@@ -1,1 +1,4 @@
-export class Genre {}
+export class Genre {
+  id: string
+  name: string
+}
