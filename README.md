@@ -22,26 +22,17 @@ The frontend can be fount at https://github.com/luanpersini/vidly-front-react-ts
 
 Vidly is a movie rent plataform where you can manage movies, customers, rents and genres. Authentication and authorization is present and all data is consumed from an external API, build in nodejs. The customers and rent
 
-
-## DevTecnologies
-
-- Eslint
-- Husky
-- Git Commit Msg Linter
-- Jest
-
 ## Tests
 
 - files .spec.ts: unit tests
 - files .test.ts: integration tests
 
-## What was archieve so far - challanges
-
-*Comming soon*
-
-**Archievements:**
+## What was archieve so far: Challanges and Knowledge Base
 
 - Learned [how to implement abstraction in NestJS.](../docs/knowledge-base/abstraction-in-nestjs)
+
+
+</br>
 
 **Credits:**
 
