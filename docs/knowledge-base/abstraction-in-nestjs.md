@@ -6,7 +6,7 @@ See bellow some examples.
 
 **Providers abstraction:**
 
-I have tested the example bellow with services and repositories, but i guess it may work with anything similar to this structure.
+I have tested the example bellow with services and repositories, but i guess it may work with anything that uses a similar structure.
 
 1 - Create the Entity and Dto interfaces
 2 - Create the Service Interface
@@ -31,7 +31,7 @@ export class GenreDto {
 }
 ```
 
-- Genre Etity
+- Genre Entity
 
 ```javascript
 export class Genre {
@@ -40,6 +40,8 @@ export class Genre {
 }
 ```
 ## 2 - Create the Service interfaces 
+
+- Genres Service Interface
 
 ```javascript
 import { Genre } from '../entities/genre.entity'
@@ -99,7 +101,7 @@ export class GenresController {
 
 ## 4 - Create the Service Implementation
 
-- Genre Service
+- Genres Service
 
 ```javascript
 import { Inject, Injectable } from '@nestjs/common'
@@ -138,7 +140,7 @@ export class GenresService {
 
 ## 5 - Add the interface and the implementation names in the module providers section
 
-- Genre Module
+- Genres Module
 
 ```javascript
 import { GenresController } from './genres.controller'
