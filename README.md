@@ -41,7 +41,7 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 
 **Archievements:**
 
-*Comming soon*
+- Learned [how to implement abstraction in NestJS.](../docs/knowledge-base/abstraction-in-nestjs)
 
 **Credits:**
 
