@@ -1,7 +1,9 @@
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { GenresModule } from './modules/genres/genres.module'
 import { Module } from '@nestjs/common'
-import { GenresModule } from './genres/genres.module';
+
+// import env from './config/env'
 
 @Module({
   imports: [GenresModule],
