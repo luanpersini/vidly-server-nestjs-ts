@@ -29,8 +29,13 @@ Vidly is a movie rent plataform where you can manage movies, customers, rents an
 
 ## What was archieve so far: Challanges and Knowledge Base
 
+NestJS is focused on fast development. The structure provided by Nest allowed me to develop most of the usual stuff and test without using interfaces for the services and repositories. In most of the cases you can develop the typical 3 way structure edge to edge (controller-service-repository) with ease, removind the need to mock everyting for the unit tests, leading to the more reliable integration tests. 
+
+The interaction with the built-in supported databases and ORMs also helps to speedup the development. The database connection is easily injected in the modules, being necessary just to point the models or entities that will define the rules of the database operations. 
+
 </br>
 
+- Learned how to make a Base Abstract Repository with the most used functions to avoid repetition.
 - Learned [how to implement abstraction in NestJS.](/docs/knowledge-base/abstraction-in-nestjs.md)
 - Learned [how to use DTOs in NestJS](https://docs.nestjs.com/controllers#request-payloads) and [how to make NestJs only accept properties that are specified in the whitelist](https://docs.nestjs.com/techniques/validation#stripping-properties).
 
