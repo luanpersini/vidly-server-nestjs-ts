@@ -1,5 +1,5 @@
-import { Genre } from '../entities/genre.entity'
-import { GenreDto } from '../dto/genre.dto'
+import { Genre } from './genre.model'
+import { GenreDto } from './genre.dto'
 
 export interface GenresServiceInterface {
   findAll: () => Promise<Genre[]>
