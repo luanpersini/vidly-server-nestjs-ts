@@ -1,32 +1,29 @@
-import { Inject, Injectable } from '@nestjs/common'
-import { GenreDto } from './dto/genre.dto'
-import { GenresRepositoryInterface } from './interfaces/genres.repository.interface'
+import { GenreDto } from './domain/genre.dto'
+import { GenresRepository } from './genres.repository'
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class GenresService {
-  constructor(
-    @Inject('GenresRepositoryInterface')
-    private readonly genresRepository: GenresRepositoryInterface
-  ) {}
+  constructor(private readonly genresRepository: GenresRepository) {}
 
-  create(createDto: GenreDto) {
-    return this.genresRepository.create(createDto)
+  async create(createDto: GenreDto) {
+    return await this.genresRepository.findOrCreate(createDto, { name: createDto.name })
   }
 
   findAll() {
     return this.genresRepository.findAll()
   }
 
-  async findOneById(id: number) {
+  async findOneById(id: string) {
     const genre = await this.genresRepository.findOneById(id)
     return genre
   }
 
-  update(id: number, updateDto: GenreDto) {
+  update(id: string, updateDto: GenreDto) {
     return this.genresRepository.update(id, updateDto)
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.genresRepository.remove(id)
   }
 }

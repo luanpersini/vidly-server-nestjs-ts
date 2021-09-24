@@ -9,7 +9,8 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true
     })
-  )
+  ),
+    app.setGlobalPrefix('api')
   await app.listen(env.port)
 }
 bootstrap()

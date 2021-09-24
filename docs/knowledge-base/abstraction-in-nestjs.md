@@ -2,6 +2,8 @@
 
 To archieve abstraction in NestJS you can use interfaces like on a normal NodeJs/Typescript App. The main difference is that you dont need to create factories, the framework will handle it automaticaly, but you must point the interfaces and their implementations.
 
+Interfaces are good for unit testing because you can mock the dependencies. It also allow team members to develop and test their code without depend on others.
+
 See bellow some examples.
 
 **Providers abstraction:**
