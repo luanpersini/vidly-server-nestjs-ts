@@ -29,6 +29,7 @@
     "@nestjs/sequelize": "^8.0.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "lodash": "^4.17.21",
     "mongoose": "^6.0.7",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
