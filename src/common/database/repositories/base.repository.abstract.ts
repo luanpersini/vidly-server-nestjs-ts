@@ -17,9 +17,12 @@ export abstract class BaseRepositoryAbstract<Entity, ID, CreateDto, UpdateDto>
   public async create(createDto: CreateDto): Promise<Entity> {
     return await this.entity.create({ ...createDto })
   }
-  public async findOrCreate(createDto: CreateDto, where: Record<string, unknown>): Promise<Entity> {
+  public async findOrCreate(
+    createDto: CreateDto,
+    condition: Record<string, unknown>
+  ): Promise<Entity> {
     const [createdItem, created] = await this.entity.findOrCreate({
-      where: where,
+      where: condition,
       defaults: {
         ...createDto
       }
@@ -34,6 +37,11 @@ export abstract class BaseRepositoryAbstract<Entity, ID, CreateDto, UpdateDto>
       where: {
         id: id
       }
+    })
+  }
+  public async findOneByCondition(condition: Record<string, unknown>): Promise<Entity> {
+    return await this.entity.findOne({
+      where: condition
     })
   }
 
