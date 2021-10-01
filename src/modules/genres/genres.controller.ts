@@ -23,7 +23,7 @@ export class GenresController {
   async create(@Body() body: GenreDto) {
     const genre = await this.genresService.create(body)
     if (!genre) {
-      throw new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
+      return new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
     }
     return genre
   }
