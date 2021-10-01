@@ -12,7 +12,9 @@ export abstract class BaseRepositoryAbstract<Entity, ID, CreateDto, UpdateDto>
   }
 
   public async findAll(): Promise<Entity[]> {
-    return this.entity.findAll()
+    return this.entity.findAll({
+      raw: true
+    })
   }
   public async create(createDto: CreateDto): Promise<Entity> {
     return await this.entity.create({ ...createDto })
