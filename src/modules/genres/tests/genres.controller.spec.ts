@@ -26,7 +26,7 @@ describe('GenresController', () => {
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [GenresController],
-      providers: [GenresService, GenresServiceProvider]
+      providers: [GenresServiceProvider]
     }).compile()
 
     genresController = module.get<GenresController>(GenresController)
@@ -34,16 +34,15 @@ describe('GenresController', () => {
   })
 
   describe('genresController.create', () => {
-    it('should call genresService.create with the correct values', () => {
-      expect(genresController).toBeDefined()
-      expect(genresController.create(createDto)).not.toEqual(null)
+    test('should call genresService.create with the correct values', async () => {
+      await genresController.create(createDto)
+      expect(genresService.create).toHaveBeenCalledWith(createDto)
     })
+
     test('should Return **Forbidden** if there is already an genre with the given name', async () => {
       jest.spyOn(genresService, 'create').mockReturnValueOnce(null)
-      const httpResponse = await genresController.create(createDto)
-      expect(httpResponse).toEqual(
-        new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
-      )
+      const response = await genresController.create(createDto)
+      expect(response).toEqual(new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name')))
     })
     test('should Return **BadRequest** if validation returns an error', async () => {
       const target: ValidationPipe = new ValidationPipe({ transform: true, whitelist: true })
@@ -57,8 +56,8 @@ describe('GenresController', () => {
       })
     })
     test('should Return **Ok** with the created genre data', async () => {
-      const httpResponse = await genresController.create(createDto)
-      expect(httpResponse).toEqual(fakeGenre)
+      const response = await genresController.create(createDto)
+      expect(response).toEqual(fakeGenre)
     })
   })
 })
