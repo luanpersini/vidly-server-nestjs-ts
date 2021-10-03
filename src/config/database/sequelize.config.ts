@@ -9,5 +9,6 @@ export const sequelizeConfig: SequelizeModuleOptions = {
   password: env.database.password,
   database: env.database.name,
   autoLoadModels: true,
+  logging: false,
   synchronize: true
 }
