@@ -14,10 +14,13 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest --passWithNoTests --silent --no-cache --runInBand",
-    "test:watch": "jest --watch",
+    "clear_jest": "jest --clearCache",
+    "test": "jest --passWithNoTests --silent --no-cache --runInBand",    
     "test:cov": "jest --coverage",
+    "test:all": "npm test -- --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
+    "test:int": "npm test -- --watchAll -c jest-integration-config.js",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
@@ -63,25 +66,5 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "moduleNameMapper": {
-      "^src/(.*)$": "<rootDir>/$1"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  }
+  }  
 }
