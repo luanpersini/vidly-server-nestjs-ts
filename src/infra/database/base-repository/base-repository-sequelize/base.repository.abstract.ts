@@ -1,4 +1,4 @@
-import { BaseRepositoryInterface } from './base.repository.interface'
+import { BaseRepositoryInterface } from '../base.repository.interface'
 import { Repository } from 'sequelize-typescript'
 
 // Implemented based on Sequelize ORM
