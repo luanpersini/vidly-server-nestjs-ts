@@ -7,6 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize'
 
 @Module({
   imports: [SequelizeModule.forFeature([Genre])],
+  // imports: [DatabaseModule],
   controllers: [GenresController],
   providers: [GenresRepository, GenresService]
 })
