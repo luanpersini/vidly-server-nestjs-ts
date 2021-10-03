@@ -8,6 +8,6 @@ export default {
     port: process.env.DATABASE_PORT || '5432',
     username: process.env.DATABASE_USERNAME || 'postgres',
     password: process.env.DATABASE_PASSWORD || '123456',
-    name: process.env.DATABASE_NAME || 'vidly'
+    name: process.env.DATABASE_NAME || process.env.NODE_ENV === 'test' ? 'test' : 'vidly'
   }
 }
