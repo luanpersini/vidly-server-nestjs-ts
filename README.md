@@ -2,7 +2,7 @@
 
 # Objectives
 
-The main objective of this project is to convert a higly coupled server APP built using NodeJS-Javascript-Mongoose to a low coupled APP (at leat about thirdy party utilities) using NodeJS-NestJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules of the App.
+The main objective of this project is to learn NestJS, for that, im going to convert an server APP built using NodeJS-Javascript-Mongoose to an APP using NestJS-Typescript-Sequelize-Postgres, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules of the App.
 
 The frontend can be fount at https://github.com/luanpersini/vidly-front-react-ts
 
