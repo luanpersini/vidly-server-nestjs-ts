@@ -8,7 +8,7 @@ export class GenresRepository extends BaseRepositoryAbstract<Genre, string, Genr
   constructor() {
     super(Genre)
   }
-  // This function is not being used but will remain uncommented as an example of unit test using sequelize. (see docs)
+  // This function is not being used but will remain uncommented as an example of test using sequelize. (see docs)
   async findOneByName(name: string): Promise<Genre> {
     return await Genre.findOne({
       where: {
