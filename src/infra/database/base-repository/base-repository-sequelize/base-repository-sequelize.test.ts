@@ -1,12 +1,14 @@
 import * as faker from 'faker'
 
-import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { AppModule } from '../../../../app.module'
 import { BaseRepositorySequelizeDto } from './domain/base-test.dto'
 import { BaseRepositorySequelizeModel } from './domain/base.repository.model'
+import { BaseRepositorySequelizeModule } from './base-repository-sequelize.module'
 import { BaseRepositorySequelizeRepository } from './base-repository-sequelize.repository'
+import { INestApplication } from '@nestjs/common'
+import { SequelizeModule } from '@nestjs/sequelize'
+import { sequelizeConfig } from '../../../../config/database/sequelize.config'
 
 const name = faker.name.findName()
 const createDto = { name: name } as BaseRepositorySequelizeDto
@@ -17,14 +19,9 @@ describe('Test for Base Repository Controller (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
+      imports: [SequelizeModule.forRoot(sequelizeConfig), BaseRepositorySequelizeModule]
     }).compile()
     app = moduleFixture.createNestApplication()
-    app.useGlobalPipes(
-      new ValidationPipe({
-        whitelist: true
-      })
-    )
     baseRepository = app.get(BaseRepositorySequelizeRepository)
     await app.init()
   })

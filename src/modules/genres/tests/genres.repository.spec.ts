@@ -1,28 +1,26 @@
-import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { AppModule } from '../../../app.module'
 import { Genre } from '../domain/genre.model'
 import { GenreDto } from '../domain/genre.dto'
+import { GenresModule } from '../genres.module'
 import { GenresRepository } from '../genres.repository'
+import { INestApplication } from '@nestjs/common'
+import { SequelizeModule } from '@nestjs/sequelize'
+import { sequelizeConfig } from '../../../config/database/sequelize.config'
 
 const name = 'any name'
 const createDto = { name: name } as GenreDto
 
-describe('Test for Base Repository Controller (e2e)', () => {
+describe('GenresRepository', () => {
   let app: INestApplication
   let genresRepository: GenresRepository
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule]
+      // You can get from app.module.ts only the module that you will import, plus the database connection
+      imports: [SequelizeModule.forRoot(sequelizeConfig), GenresModule]
     }).compile()
     app = moduleFixture.createNestApplication()
-    app.useGlobalPipes(
-      new ValidationPipe({
-        whitelist: true
-      })
-    )
     genresRepository = app.get(GenresRepository)
     await app.init()
   })
@@ -33,8 +31,8 @@ describe('Test for Base Repository Controller (e2e)', () => {
     })
     await app.close()
   })
-  describe('findOrCreate', () => {
-    test('should Return **Ok** with the created data', async () => {
+  describe('findOneByName', () => {
+    test('should return the item found by name', async () => {
       const createdGenre = await genresRepository.create(createDto)
       const result = await genresRepository.findOneByName(createDto.name)
       expect(result).toBeTruthy()
