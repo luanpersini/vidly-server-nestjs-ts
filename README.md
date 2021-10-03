@@ -2,21 +2,21 @@
 
 # Objectives
 
-The main objective of this project is to convert a higly coupled server APP built using NodeJS-Javascript-Mongoose to a low coupled APP using NodeJS-NestJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules and solutions that the App will delivery.
+The main objective of this project is to convert a higly coupled server APP built using NodeJS-Javascript-Mongoose to a low coupled APP (at leat about thirdy party utilities) using NodeJS-NestJS-Typescript-MongoDb, following SOLID, TDD and Clean Code principles. The idea is to deal with the challanges of the conversion, focusing on the tecnologies instead of the bussiness rules of the App.
 
 The frontend can be fount at https://github.com/luanpersini/vidly-front-react-ts
 
 **From:**
 
-- NodeJS (higly coupled to express, mongoose and other libraries, few tests)
-- Javascript (no types)
-- Mongoose (higly coupled)
+- NodeJS 
+- Javascript 
+- Mongoose
 
 **To:**
-- NodeJS (low coupled - using ports and adapters)
-- NestJS (low coupled framework)
-- Typescript (strongly typed)
-- MongoDB (low coupled)
+- NodeJS
+- NestJS
+- Typescript
+- Sequelize (Postgres)
 
 ## Vidly
 
@@ -34,6 +34,8 @@ NestJS is focused on fast development. The structure provided by Nest allowed me
  
 The interaction with the built-in supported databases and ORMs also helped me to speedup the development. The database connection is easily injected into the modules, only requiring you to point to the models or entities that will define the rules of the database operations. 
 
+It was quite hard to learn how to test in NestJS with Sequelize and Postgres because there was too few info about this in the web. I also couldnt find an in memory database for this scenario, the solution was to use a real database.
+
 </br>
 
 - Learned how to make a Base Abstract Repository with the most used functions to avoid repetition, speeding up the development.
@@ -41,7 +43,7 @@ The interaction with the built-in supported databases and ORMs also helped me to
 - Learned [how to use DTOs in NestJS.](https://docs.nestjs.com/controllers#request-payloads) and [how to make NestJs only accept properties that are specified in the whitelist.](https://docs.nestjs.com/techniques/validation#stripping-properties)
 - Learned that NestJS handles all uncaught exceptions because the framework has a built-in exception handler.
 - Implemented a Http exception filter to standardize the exception response.
-- Learned [how to test in NestJS.](https://blog.logrocket.com/unit-testing-nestjs-applications-with-jest/)
+- Learned [how to test in NestJS using Sequelize.](/docs/knowledge-base/abstraction-in-nestjs.md)
 
 </br>
 
