@@ -22,7 +22,7 @@ export class GenresController {
   async create(@Body() body: GenreDto) {
     const genre = await this.genresService.create(body)
     if (!genre) {
-      return new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
+      throw new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
     }
     return genre
   }
@@ -36,8 +36,9 @@ export class GenresController {
   async remove(@Param('id', ParseUUIDPipe) id: string) {
     const deleted = await this.genresService.remove(id)
     if (deleted === 0) {
-      return new NotFoundException(new ItemNotFoundError('Genre'))
+      throw new NotFoundException(new ItemNotFoundError('Genre'))
     }
+    return deleted
   }
 
   /*
