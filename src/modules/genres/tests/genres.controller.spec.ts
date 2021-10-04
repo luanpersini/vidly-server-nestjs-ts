@@ -1,4 +1,9 @@
-import { ArgumentMetadata, BadRequestException, ValidationPipe } from '@nestjs/common'
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  NotFoundException,
+  ValidationPipe
+} from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import * as faker from 'faker'
 import { ItemAlreadyExistsError } from 'src/common/errors/item-already-exists-error'
@@ -44,9 +49,11 @@ describe('GenresController', () => {
 
     test('should Return **BadRequest** if there is already an genre with the given name', async () => {
       jest.spyOn(genresService, 'create').mockReturnValueOnce(null)
-      const response = await genresController.create(createDto)
-      expect(response).toEqual(new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name')))
+      await expect(genresController.create(createDto)).rejects.toThrowError(
+        new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
+      )
     })
+
     test('should Return **BadRequest** if validation returns an error', async () => {
       const target: ValidationPipe = new ValidationPipe({ transform: true, whitelist: true })
       const metadata: ArgumentMetadata = {
@@ -58,6 +65,7 @@ describe('GenresController', () => {
         expect(err.getResponse().statusCode).toEqual(400)
       })
     })
+
     test('should Return **Ok** with the created genre data', async () => {
       const response = await genresController.create(createDto)
       expect(response).toEqual(fakeGenre)
@@ -77,8 +85,13 @@ describe('GenresController', () => {
     })
     test('should Return **NotFound** if no genre with the given ID is found', async () => {
       jest.spyOn(genresService, 'remove').mockReturnValueOnce(Promise.resolve(0))
+      await expect(genresController.remove(genreId)).rejects.toThrowError(
+        new NotFoundException(new ItemNotFoundError('Genre'))
+      )
+    })
+    test('should Return **1** if the genre was successfuly deleted', async () => {
       const response = await genresController.remove(genreId)
-      expect(response).toEqual(new BadRequestException(new ItemNotFoundError('Genre')))
+      expect(response).toEqual(1)
     })
   })
 })
