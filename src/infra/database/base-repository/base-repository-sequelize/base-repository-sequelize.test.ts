@@ -1,19 +1,19 @@
-import * as faker from 'faker'
-
-import { Test, TestingModule } from '@nestjs/testing'
-
-import { BaseRepositorySequelizeDto } from './domain/base-test.dto'
-import { BaseRepositorySequelizeModel } from './domain/base.repository.model'
-import { BaseRepositorySequelizeModule } from './base-repository-sequelize.module'
-import { BaseRepositorySequelizeRepository } from './base-repository-sequelize.repository'
 import { INestApplication } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
+import { Test, TestingModule } from '@nestjs/testing'
+import * as faker from 'faker'
 import { sequelizeConfig } from '../../../../config/database/sequelize.config'
+import { BaseRepositorySequelizeModule } from './base-repository-sequelize.module'
+import { BaseRepositorySequelizeRepository } from './base-repository-sequelize.repository'
+import { BaseRepositorySequelizeDto } from './domain/base-test.dto'
+import { BaseRepositorySequelizeModel } from './domain/base.repository.model'
+
+
 
 const name = faker.name.findName()
 const createDto = { name: name } as BaseRepositorySequelizeDto
 
-describe('Test for Base Repository Controller (e2e)', () => {
+describe('Base Repository Sequelize', () => {
   let app: INestApplication
   let baseRepository: BaseRepositorySequelizeRepository
 
@@ -50,14 +50,14 @@ describe('Test for Base Repository Controller (e2e)', () => {
       // create a genre
       await baseRepository.create(createDto)
       // locate the genre using the model
-      let resultModel = []
-      resultModel = await BaseRepositorySequelizeModel.findAll()
+      let modelResult = []
+      modelResult = await BaseRepositorySequelizeModel.findAll()
       // locate the genre using the repository
-      let resultRepository = []
-      resultRepository = await baseRepository.findAll()
+      let repositoryResult = []
+      repositoryResult = await baseRepository.findAll()
       // compare both values
-      expect(resultRepository).toBeTruthy()
-      expect(resultRepository[0].name).toEqual(resultModel[0].name)
+      expect(repositoryResult).toBeTruthy()
+      expect(repositoryResult[0].name).toEqual(modelResult[0].name)
     })
   })
 })

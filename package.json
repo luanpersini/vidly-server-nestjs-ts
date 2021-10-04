@@ -21,7 +21,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.js",
     "test:int": "npm test -- --watchAll -c jest-integration-config.js",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "npm test -- --watchAll --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
