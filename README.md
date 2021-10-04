@@ -38,7 +38,7 @@ It was quite hard to learn how to test in NestJS with Sequelize and Postgres bec
 
 </br>
 
-- Learned how to make a Base Abstract Repository with the most used functions to avoid repetition, speeding up the development.
+- Learned [how to make a Base Abstract Repository](/docs/knowledge-base/base-repository.md) with the most used functions to avoid repetition, speeding up the development.
 - Learned [how to implement abstraction in NestJS.](/docs/knowledge-base/abstraction-in-nestjs.md)
 - Learned [how to test in NestJS using Sequelize.](/docs/knowledge-base/test-in-nestjs.md)
 - Learned [how to use DTOs in NestJS.](https://docs.nestjs.com/controllers#request-payloads) and [how to make NestJs only accept properties that are specified in the whitelist.](https://docs.nestjs.com/techniques/validation#stripping-properties)
