@@ -11,6 +11,7 @@ import { sequelizeConfig } from '../src/config/database/sequelize.config'
 import { GenreDto } from '../src/modules/genres/domain/genre.dto'
 import { Genre } from '../src/modules/genres/domain/genre.model'
 import { GenresModule } from '../src/modules/genres/genres.module'
+import { GenresService } from '../src/modules/genres/genres.service'
 
 
 
@@ -21,6 +22,7 @@ const uri = '/genres'
 describe('Genres End-To-End Tests', () => {
   let app: INestApplication
   let server: Server
+  let genresService: GenresService
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -35,6 +37,7 @@ describe('Genres End-To-End Tests', () => {
       })
     )
     server = app.getHttpServer()
+    genresService = app.get(GenresService)
     await app.init()
   })
   afterEach(async () => {
@@ -63,8 +66,16 @@ describe('Genres End-To-End Tests', () => {
       expect(result.name).toEqual(new ItemAlreadyExistsError('Genre', 'Name').name)
     })
     test('should Return **BadRequest** if an validation error occurs', async () => {
+      // Validation Pipe was already tested inside NestJS Framework, thus, this is only testing if it is being called
       const { status } = await request(server).post(uri).send({})
       expect(status).toBe(400)
+    })
+    test('should allow only whitelist properties - ValidationPipe whitelist: true', async () => {
+      jest.spyOn(genresService, 'create')
+      const { status } = await request(server)
+        .post(uri)
+        .send({ name: 'Any Name', not_in_whitelist: 'should be remove by validation pipe' })
+      expect(genresService.create).toHaveBeenCalledWith({ name: 'Any Name' })
     })
   })
   describe('/Get Genres', () => {
