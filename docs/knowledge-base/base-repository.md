@@ -4,7 +4,7 @@ A base abstract repository is a class that you can extend your repositories from
 
 If you need a new function or a different behavior from an existing function, you can override it or create a new one.
 
-My base repository was build using Sequelize ORM and NestJS. **You can see all the code [here](/src/infra/database/base-repository)**
+My base repository was build using Sequelize ORM and NestJS. You can see all the code **[here](/src/infra/database/base-repository)**
 
  Steps:
 
