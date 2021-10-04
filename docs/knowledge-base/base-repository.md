@@ -1,17 +1,17 @@
 # Base Abstract Repository
 
-A base abstract repository is a class that you can extend your repositories from, avoiding repetition (DRY). One of the advantages is that you just need to make the tests once, and those most used functions will be covered. 
+A base abstract repository is a class that you can extend your repositories from, avoiding repetition (DRY). One of the advantages is that you just need to make the tests for the base functions once, testing only if the services are calling them with the correct data. 
 
-If you need a different function or behavior from an existing function, you can override it or create a new one.
+If you need a new function or a different behavior from an existing function, you can override it or create a new one.
 
-My base repository was build over Sequelize ORM using NestJS. Steps:
+My base repository was build using Sequelize ORM and NestJS. **You can see all the code [here](/src/infra/database/base-repository)**
+
+ Steps:
 
 1. Create a Base Repository Interface
 2. Create a Base Repository Abstract Class
 3. Create a Module to test your Base Repository Abstract Class
 4. Create tests for the extended Base Repository
-
-[You can see all the code here](/tree/main/src/infra/database/base-repository/base-repository-sequelize)
 
 ## 1 - Create a base repository interface
 
