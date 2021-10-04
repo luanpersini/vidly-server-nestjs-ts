@@ -34,11 +34,11 @@ export class GenresController {
 
   @Delete(':id')
   async remove(@Param('id', ParseUUIDPipe) id: string) {
-    const deleted = await this.genresService.remove(id)
-    if (deleted === 0) {
+    const deletedRows = await this.genresService.remove(id)
+    if (deletedRows === 0) {
       throw new NotFoundException(new ItemNotFoundError('Genre'))
     }
-    return deleted
+    return { deletedRows }
   }
 
   /*

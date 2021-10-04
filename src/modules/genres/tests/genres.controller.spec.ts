@@ -28,7 +28,9 @@ describe('GenresController', () => {
       useFactory: () => ({
         create: jest.fn(() => fakeGenre),
         findAll: jest.fn(() => [fakeGenre]),
-        remove: jest.fn(() => 1)
+        remove: jest.fn(() => {
+          deletedRows: 1
+        })
       })
     }
 
@@ -83,7 +85,7 @@ describe('GenresController', () => {
       await genresController.remove(genreId)
       expect(genresService.remove).toHaveBeenCalledWith(genreId)
     })
-    test('should Return **NotFound** if no genre with the given ID is found', async () => {
+    test('should Return **NotFound** if the genre with the given ID was not found', async () => {
       jest.spyOn(genresService, 'remove').mockReturnValueOnce(Promise.resolve(0))
       await expect(genresController.remove(genreId)).rejects.toThrowError(
         new NotFoundException(new ItemNotFoundError('Genre'))
@@ -91,7 +93,7 @@ describe('GenresController', () => {
     })
     test('should Return **1** if the genre was successfuly deleted', async () => {
       const response = await genresController.remove(genreId)
-      expect(response).toEqual(1)
+      expect(response.deletedRows).toEqual(1)
     })
   })
 })
