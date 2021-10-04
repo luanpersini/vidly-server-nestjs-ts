@@ -4,7 +4,7 @@ A base abstract repository is a class that you can extend your repositories from
 
 If you need a new function or a different behavior from an existing function, you can override it or create a new one.
 
-My base repository was build using Sequelize ORM and NestJS. 
+My base repository was built using Sequelize ORM and NestJS. 
 
 You can see the code **[here](/src/infra/database/base-repository)**
 
@@ -17,7 +17,7 @@ You can see the code **[here](/src/infra/database/base-repository)**
 
 ## 1 - Create a base repository interface
 
-You can make all functions in one interface or create one for each function, its up to you.
+You can add all functions to one interface or create one for each function, its up to you.
 
 This interface is making use of generics types from typescript (https://www.typescriptlang.org/docs/handbook/2/generics.html).
 
@@ -111,7 +111,7 @@ export abstract class BaseRepositoryAbstract<Entity, ID, CreateDto, UpdateDto>
 
 ## 3 - Create a Module to test your Base Repository Abstract Class
 
-Since you cant instantiate an abstract class, you need to create a repository to test it. To do so, create an module with a DTO, a Model, a Module and a Repository.
+Since you cant instantiate an abstract class, you need to create a repository extendint the base class to test it. To do so, create an module with a DTO, a Model, a Module and a Repository.
 
 - base-repository-sequelize.repository.ts
 
