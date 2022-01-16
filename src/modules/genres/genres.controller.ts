@@ -1,16 +1,4 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Param,
-  ParseUUIDPipe,
-  Post
-} from '@nestjs/common'
-import { ItemAlreadyExistsError } from 'src/common/errors/item-already-exists-error'
-import { ItemNotFoundError } from '../../common/errors/item-not-found-error'
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common'
 import { GenreDto } from './domain/genre.dto'
 import { GenresService } from './genres.service'
 
@@ -20,11 +8,7 @@ export class GenresController {
 
   @Post()
   async create(@Body() body: GenreDto) {
-    const genre = await this.genresService.create(body)
-    if (!genre) {
-      throw new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
-    }
-    return genre
+    return await this.genresService.create(body)
   }
 
   @Get()
@@ -34,11 +18,7 @@ export class GenresController {
 
   @Delete(':id')
   async remove(@Param('id', ParseUUIDPipe) id: string) {
-    const deletedRows = await this.genresService.remove(id)
-    if (deletedRows === 0) {
-      throw new NotFoundException(new ItemNotFoundError('Genre'))
-    }
-    return { deletedRows }
+    return await this.genresService.remove(id)
   }
 
   /*

@@ -1,7 +1,10 @@
-import { Injectable } from '@nestjs/common'
-import { StringHelper } from 'src/common/helpers/string.helper'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
+
 import { GenreDto } from './domain/genre.dto'
 import { GenresRepository } from './genres.repository'
+import { ItemAlreadyExistsError } from '../../common/errors/item-already-exists-error'
+import { ItemNotFoundError } from '../../common/errors/item-not-found-error'
+import { StringHelper } from 'src/common/helpers/string.helper'
 
 @Injectable()
 export class GenresService {
@@ -9,7 +12,11 @@ export class GenresService {
 
   async create(createDto: GenreDto) {
     createDto.name = StringHelper.titleCase(createDto.name)
-    return await this.genresRepository.findOrCreate(createDto, { name: createDto.name })
+    const genre = await this.genresRepository.findOrCreate(createDto, { name: createDto.name })
+    if (!genre) {
+      throw new BadRequestException(new ItemAlreadyExistsError('Genre', 'Name'))
+    }
+    return
   }
 
   findAll() {
@@ -17,7 +24,11 @@ export class GenresService {
   }
 
   async remove(id: string) {
-    return await this.genresRepository.remove(id)
+    const deletedRows = await this.genresRepository.remove(id)
+    if (deletedRows === 0) {
+      throw new NotFoundException(new ItemNotFoundError('Genre'))
+    }
+    return { deletedRows }
   }
   /*
   // The commented functions are working as expected. This section wont be used by Vidly Front App and will be commented to speed up the learning process. 
