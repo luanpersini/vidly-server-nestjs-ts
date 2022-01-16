@@ -1,4 +1,4 @@
-import { BaseRepositorySequelizeModel } from './domain/base.repository.model'
+import { BaseRepositorySequelizeModel } from './tests/base.repository.model'
 import { BaseRepositorySequelizeRepository } from './base-repository-sequelize.repository'
 import { Module } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'

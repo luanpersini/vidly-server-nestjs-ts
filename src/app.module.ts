@@ -6,7 +6,6 @@ import { sequelizeConfig } from './config/database/sequelize.config'
 
 @Module({
   imports: [SequelizeModule.forRoot(sequelizeConfig), GenresModule, BaseRepositorySequelizeModule],
-  // imports: [DatabaseModule, GenresModule],
   controllers: [],
   providers: []
 })

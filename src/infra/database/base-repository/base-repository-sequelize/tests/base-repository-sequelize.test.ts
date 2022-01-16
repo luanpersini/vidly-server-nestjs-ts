@@ -2,13 +2,13 @@ import * as faker from 'faker'
 
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { BaseRepositorySequelizeDto } from './domain/base-test.dto'
-import { BaseRepositorySequelizeModel } from './domain/base.repository.model'
-import { BaseRepositorySequelizeModule } from './base-repository-sequelize.module'
-import { BaseRepositorySequelizeRepository } from './base-repository-sequelize.repository'
+import { BaseRepositorySequelizeDto } from './base-test.dto'
+import { BaseRepositorySequelizeModel } from './base.repository.model'
+import { BaseRepositorySequelizeModule } from '../base-repository-sequelize.module'
+import { BaseRepositorySequelizeRepository } from '../base-repository-sequelize.repository'
 import { INestApplication } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
-import { sequelizeConfig } from '../../../../config/database/sequelize.config'
+import { sequelizeConfig } from '../../../../../config/database/sequelize.config'
 
 const name = faker.name.findName()
 const name2 = faker.name.findName()
